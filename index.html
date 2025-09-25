@@ -7,54 +7,9 @@
     <meta name="description" content="Professional multi-cryptocurrency blockchain explorer with user authentication and social features">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔗</text></svg>">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/components.css">
-    <link rel="stylesheet" href="styles/auth.css">
+    <link rel="stylesheet" href="styles/styling.css">
 </head>
 <body data-theme="dark" data-crypto="bitcoin">
-    <!-- Authentication Modal -->
-    <div class="modal-overlay" id="authModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 id="authTitle">Sign In</h2>
-                <button class="modal-close" id="closeAuth">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="auth-tabs">
-                    <button class="auth-tab active" data-tab="signin">Sign In</button>
-                    <button class="auth-tab" data-tab="signup">Sign Up</button>
-                </div>
-                
-                <form class="auth-form" id="authForm">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" required>
-                    </div>
-                    <div class="form-group signup-only" style="display: none;">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword">
-                    </div>
-                    <div class="form-group signup-only" style="display: none;">
-                        <label for="username">Username</label>
-                        <input type="text" id="username">
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="authSubmit">Sign In</button>
-                </form>
-                
-                <div class="auth-divider">or</div>
-                
-                <button class="btn btn-oauth google-btn" id="googleAuth">
-                    <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285f4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34a853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#fbbc05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#ea4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-                    Continue with Google
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -79,61 +34,16 @@
                 </button>
             </div>
             
+            <!-- Simplified navigation -->
             <ul class="navbar-nav" id="nav">
                 <li><a href="#" class="nav-link active" data-page="explorer">Explorer</a></li>
                 <li><a href="#" class="nav-link" data-page="following">Following</a></li>
                 <li><a href="#" class="nav-link" data-page="watchlist">Watchlist</a></li>
-                <li class="nav-item">
-                    <div class="nav-link" id="settingsBtn">Settings</div>
-                    <div class="settings-dropdown" id="settings">
-                        <div class="dropdown-header"><h3>Settings</h3></div>
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <div class="setting-title">Theme</div>
-                                <div class="setting-description">Switch between light and dark mode</div>
-                            </div>
-                            <button class="toggle" id="themeToggle">
-                                <div class="toggle-slider"><span id="themeIcon">🌙</span></div>
-                            </button>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <div class="setting-title">Auto-refresh</div>
-                                <div class="setting-description">Automatically update stats</div>
-                            </div>
-                            <button class="toggle" id="autoToggle">
-                                <div class="toggle-slider"><span>🔄</span></div>
-                            </button>
-                        </div>
-                        <div class="setting-item">
-                            <div class="setting-label">
-                                <div class="setting-title">Notifications</div>
-                                <div class="setting-description">Get alerts for followed addresses</div>
-                            </div>
-                            <button class="toggle" id="notifToggle">
-                                <div class="toggle-slider"><span>🔔</span></div>
-                            </button>
-                        </div>
-                    </div>
-                </li>
             </ul>
 
-            <!-- User Menu -->
+            <!-- Simplified user menu -->
             <div class="user-menu">
                 <button class="btn btn-primary" id="signInBtn">Sign In</button>
-                <div class="user-profile" id="userProfile" style="display: none;">
-                    <button class="profile-btn" id="profileBtn">
-                        <img id="userAvatar" alt="User Avatar" class="avatar">
-                        <span id="username">User</span>
-                    </button>
-                    <div class="profile-dropdown" id="profileDropdown">
-                        <a href="#" class="dropdown-item">Profile</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="#" class="dropdown-item">Export Data</a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item" id="signOutBtn">Sign Out</a>
-                    </div>
-                </div>
             </div>
 
             <button class="mobile-menu" id="mobileBtn">☰</button>
@@ -145,7 +55,7 @@
         <!-- Explorer Page -->
         <div class="page active" id="explorerPage">
             <div class="header">
-                <h1 id="cryptoTitle">Bitcoin Blockchain Explorer</h1>
+                <h1 id="cryptoTitle">Blockchain Explorer</h1>
                 <p id="cryptoSubtitle">Explore blocks, transactions, and addresses on the Bitcoin network</p>
             </div>
 
@@ -188,20 +98,9 @@
                         <input type="text" class="search-input" id="searchInput" 
                                placeholder="Enter block hash, transaction hash, address, or block height..." 
                                autocomplete="off">
-                        <button type="button" class="search-addon" id="qrScanBtn" title="Scan QR Code">📱</button>
                         <button type="submit" class="btn btn-primary search-btn" id="searchBtn">
                             <span id="btnText">Search</span>
                         </button>
-                    </div>
-                    
-                    <div class="search-filters" id="searchFilters">
-                        <select class="filter-select" id="searchType">
-                            <option value="all">All Types</option>
-                            <option value="block">Blocks Only</option>
-                            <option value="transaction">Transactions Only</option>
-                            <option value="address">Addresses Only</option>
-                        </select>
-                        <button type="button" class="btn btn-secondary" id="advancedFilters">Advanced</button>
                     </div>
                 </form>
                 
@@ -210,27 +109,16 @@
                     <div class="example-tags">
                         <span class="example-tag" data-query="000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f">Genesis Block</span>
                         <span class="example-tag" data-query="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa">Satoshi's Address</span>
-                        <span class="example-tag" data-query="latest">Latest Block</span>
+                        <span class="example-tag" data-query="0">Block 0</span>
                         <span class="example-tag" data-query="800000">Block 800K</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- Recent Searches -->
-            <div class="recent-searches" id="recentSearches" style="display: none;">
-                <h3>Recent Searches</h3>
-                <div class="recent-list" id="recentList"></div>
             </div>
 
             <!-- Results Section -->
             <div class="results-container" id="results" style="display: none;">
                 <div class="results-header">
                     <div class="results-title" id="resultsTitle">Search Results</div>
-                    <div class="results-actions">
-                        <button class="btn btn-secondary" id="exportBtn">Export</button>
-                        <button class="btn btn-secondary" id="shareBtn">Share</button>
-                        <button class="btn btn-primary" id="followBtn" style="display: none;">Follow</button>
-                    </div>
                 </div>
                 <div class="results-content" id="resultsContent">
                     <div class="loading">
@@ -274,20 +162,152 @@
         </div>
     </div>
 
-    <!-- Toast Notifications -->
-    <div class="toast-container" id="toastContainer"></div>
-
-    <!-- Scripts -->
-    <script src="js/config.js"></script>
-    <script src="js/utils/helpers.js"></script>
-    <script src="js/utils/storage.js"></script>
-    <script src="js/services/auth.js"></script>
-    <script src="js/services/api.js"></script>
-    <script src="js/services/crypto-apis.js"></script>
-    <script src="js/components/ui.js"></script>
-    <script src="js/components/auth.js"></script>
-    <script src="js/components/search.js"></script>
-    <script src="js/components/following.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Load JavaScript files in correct order -->
+    <!-- 1. Configuration first -->
+    <script src="js/appconfig.js"></script>
+    
+    <!-- 2. Create missing utility classes -->
+    <script>
+        // Simple Storage utility class
+        class Storage {
+            static get(key, defaultValue = null) {
+                try {
+                    const item = localStorage.getItem(key);
+                    return item ? JSON.parse(item) : defaultValue;
+                } catch (error) {
+                    console.error('Storage get error:', error);
+                    return defaultValue;
+                }
+            }
+            
+            static set(key, value) {
+                try {
+                    localStorage.setItem(key, JSON.stringify(value));
+                } catch (error) {
+                    console.error('Storage set error:', error);
+                }
+            }
+            
+            static remove(key) {
+                try {
+                    localStorage.removeItem(key);
+                } catch (error) {
+                    console.error('Storage remove error:', error);
+                }
+            }
+        }
+        
+        // Simple UI utility class
+        class UI {
+            static showToast(message, type = 'info') {
+                console.log(`${type.toUpperCase()}: ${message}`);
+                // You could implement actual toast notifications here
+            }
+        }
+        
+        // Placeholder Auth classes
+        class Auth {
+            static initialize() {
+                console.log('Auth system initialized (placeholder)');
+            }
+        }
+        
+        class AuthUI {
+            static showModal() {
+                alert('Sign in functionality not yet implemented');
+            }
+        }
+        
+        // Placeholder API class
+        class API {
+            static async getUserData(uid) {
+                return { following: [], watchlist: [] };
+            }
+            
+            static async saveUserData(uid, data) {
+                console.log('Saving user data:', data);
+            }
+        }
+        
+        // Simple SearchUI class
+        class SearchUI {
+            static generateResultsHTML(data, crypto) {
+                if (data.type === 'block') {
+                    return `
+                        <div class="info-card">
+                            <h3>Block Hash</h3>
+                            <p>${data.id || 'N/A'}</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Height</h3>
+                            <p>${data.height?.toLocaleString() || 'N/A'}</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Timestamp</h3>
+                            <p>${data.timestamp ? new Date(data.timestamp * 1000).toLocaleString() : 'N/A'}</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Transaction Count</h3>
+                            <p>${data.tx_count?.toLocaleString() || 'N/A'}</p>
+                        </div>
+                    `;
+                } else if (data.type === 'transaction') {
+                    return `
+                        <div class="info-card">
+                            <h3>Transaction ID</h3>
+                            <p>${data.txid || 'N/A'}</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Block Height</h3>
+                            <p>${data.status?.block_height?.toLocaleString() || 'Unconfirmed'}</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Size</h3>
+                            <p>${data.size ? `${data.size} bytes` : 'N/A'}</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Fee</h3>
+                            <p>${data.fee ? `${data.fee} sats` : 'N/A'}</p>
+                        </div>
+                    `;
+                } else if (data.type === 'address') {
+                    return `
+                        <div class="info-card">
+                            <h3>Address</h3>
+                            <p>${data.address || 'N/A'}</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Balance</h3>
+                            <p>${data.chain_stats?.funded_txo_sum ? `${data.chain_stats.funded_txo_sum} sats` : '0 sats'}</p>
+                        </div>
+                        <div class="info-card">
+                            <h3>Transaction Count</h3>
+                            <p>${data.chain_stats?.tx_count?.toLocaleString() || '0'}</p>
+                        </div>
+                    `;
+                }
+                return '<p>No data available</p>';
+            }
+        }
+        
+        // Placeholder Following and Watchlist UI classes
+        class FollowingUI {
+            static generateFollowingItem(item) {
+                return `<div class="following-item">Following: ${item.address}</div>`;
+            }
+        }
+        
+        class WatchlistUI {
+            static generateWatchlistItem(item) {
+                return `<div class="watchlist-item">Watching: ${item.id}</div>`;
+            }
+        }
+    </script>
+    
+    <!-- 3. Load your actual API service -->
+    <script src="js/multi-crypto.js"></script>
+    
+    <!-- 4. Load main application controller -->
+    <script src="js/appcontrol.js"></script>
 </body>
 </html>
